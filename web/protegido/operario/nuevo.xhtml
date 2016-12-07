@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h2>Nueva Nota</h2>
+                <h:form>
+                    <p:growl autoUpdate="true" showDetail="true" showSummary="false"/>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="cboCategoria" value="Categoría"/>
+                        <p:selectOneMenu id="cboCategoria" value="#{notaBean.categoria.id_categoria}">
+                            <f:selectItems value="#{notaBean.categorias}" var="cat" itemLabel="#{cat.nombre}" itemValue="#{cat.id_categoria}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="txtEncabezado" value="Encabezado"/>
+                        <p:inputText id="txtEncabezado" value="#{notaBean.nota.encabezado}"/>
+
+                        <p:outputLabel for="txtCuerpo" value="Contenido"/>
+                        <p:inputTextarea id="txtCuerpo" value="#{notaBean.nota.cuerpo}"/>
+
+                        <p:outputLabel for="txtFecha" value="Fecha"/>
+                        <p:calendar id="txtFecha" value="#{notaBean.nota.fecha}" locale="es"/>
+                        <p:column/>
+                        <p:commandButton value="Registrar" actionListener="#{notaBean.registrar()}" action="/protegido/operario/nuevo.xhtml"/>
+
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
